@@ -4,7 +4,7 @@
 ### 카드 리스트 조회(페이지네이션)
 ```
 - GET
-- /card
+- /card/v1.0
 ```
 param:
 
@@ -16,7 +16,7 @@ param:
 ### 카드 하나 조회
 ```
 - GET
-- /card/{card_sq}
+- /card/v1.0/{card_sq}
 ```
 param:
 
@@ -27,7 +27,7 @@ param:
 ### 카드 생성
 ```
 - POST
-- /card
+- /card/v1.0
 ```
 param: **(body)**
 
@@ -43,7 +43,7 @@ param: **(body)**
 ### 내 기본 정보 조회
 ```
 - GET
-- /member/{member_sq}
+- /member/v1.0/{member_sq}
 ```
 param:
 
@@ -54,7 +54,7 @@ param:
 ### 기본 정보 수정
 ```
 - PUT
-- /member/profile
+- /member/v1.0/profile
 ```
 param: **(body)**
 
@@ -68,7 +68,7 @@ param: **(body)**
 ### 비밀번호 수정
 ```
 - PUT
-- /member/password
+- /member/v1.0/password
 ```
 param: **(body)**
 
@@ -82,7 +82,7 @@ param: **(body)**
 ### 프로필 사진 수정
 ```
 - PUT
-- /member/profile/img
+- /member/v1.0/profile/img
 ```
 param: **(multipart/form-data)**
 
@@ -94,7 +94,7 @@ param: **(multipart/form-data)**
 ### 내 통계 정보 조회 (페이지네이션)
 ```
 - GET
-- /member/statics/{member_sq}
+- /member/v1.0/statics/{member_sq}
 ```
 param:
 
