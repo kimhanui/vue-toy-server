@@ -1,6 +1,6 @@
 # API DOC
 
-## Main Page
+## Card API
 ### 카드 리스트 조회(페이지네이션)
 ```
 - GET
@@ -10,6 +10,7 @@ param:
 
 | Name | Type  | Desc          |
 |------|-------|---------------|
+| member_sq | int       | 회원번호    |
 | page | int   | 페이지네이션 페이지 번호 |
 | size | int   | 페이지네이션 단위 사이즈 |
 
@@ -22,6 +23,7 @@ param:
 
 | Name    | Type  | Desc      |
 |---------|-------|-----------|
+| member_sq | int       | 회원번호    |
 | card_sq | int   | 컨텐츠 카드 번호 |
 
 ### 카드 생성
@@ -38,7 +40,66 @@ param: **(body)**
 | content   | String    | 내용      |
 | file      | Multipart | 이미지 파일  |
 
-## My Page
+### 카드 추천하기
+```
+- PUT
+- /card/v1.0
+```
+param: **(body)**
+
+| Name      | Type      | Desc               |
+|-----------|-----------|--------------------|
+| member_sq | int       | 회원번호               |
+| card_sq   | int       | 카드번호               |
+| like_yn   | int       | 추천여부(0:비추천, 1: 추천) |
+
+
+---
+## COMMENT API
+
+### 코멘트 리스트조회
+```
+- GET
+- /comment/v1.0
+```
+param:
+
+| Name      | Type | Desc                |
+|-----------|------|---------------------|
+| member_sq | int  | 회원번호                |
+| card_sq   | int  | 카드번호                |
+| page        | int   | 페이지네이션 페이지 번호 |
+| size        | int   | 페이지네이션 단위 사이즈 |
+
+### 코멘트 생성
+```
+- POST
+- /comment/v1.0
+```
+param: **(body)**
+
+| Name      | Type      | Desc   |
+|-----------|-----------|--------|
+| member_sq | int       | 회원번호   |
+| card_sq   | int       | 카드번호   |
+| content   | String    | 내용     |
+
+### 코멘트 추천하기
+```
+- PUT
+- /comment/v1.0
+```
+param: **(body)**
+
+| Name      | Type | Desc                |
+|-----------|------|---------------------|
+| member_sq | int  | 회원번호                |
+| card_sq   | int  | 카드번호                |
+| like_yn   | int  | 추천여부(0:비추천, 1: 추천)  |
+
+
+---
+## My INFO API
 
 ### 내 기본 정보 조회
 ```
@@ -94,15 +155,15 @@ param: **(multipart/form-data)**
 ### 내 통계 정보 조회 (페이지네이션)
 ```
 - GET
-- /member/v1.0/statics/{member_sq}
+- /member/v1.0/stat/{member_sq}
 ```
 param:
 
-| Name      | Type | Desc                                                  |
-|-----------|------|-------------------------------------------------------|
-| member_sq | int  | 회원번호 |
-| type      | int  | 조회할 통계 타입<br/>(0:읽은 책, 1:추천한 책, 2:읽고 싶은 책, 3:읽어야하는 책) |
-| page | int   | 페이지네이션 페이지 번호 |
-| size | int   | 페이지네이션 단위 사이즈 |
+| Name        | Type | Desc                                                  |
+|-------------|------|-------------------------------------------------------|
+| member_sq   | int  | 회원번호 |
+| search_type | int  | 조회할 통계 타입<br/>(0:읽은 책, 1:추천한 책, 2:읽고 싶은 책, 3:읽어야하는 책) |
+| page        | int   | 페이지네이션 페이지 번호 |
+| size        | int   | 페이지네이션 단위 사이즈 |
 
 
