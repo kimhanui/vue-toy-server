@@ -1,0 +1,13 @@
+server.port: 9090
+mybatis:
+  mapper-locations: mapper/*.xml
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/vue_toy
+    username: root
+    password: test
+  sql:
+    init:
+      mode: always #load data.sql
+  jpa:
+    defer-datasource-initialization: true #load schema.sql
