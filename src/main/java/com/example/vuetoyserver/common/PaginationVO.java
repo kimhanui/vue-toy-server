@@ -1,8 +1,11 @@
 package com.example.vuetoyserver.common;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
-@Getter
+@Data
 public class PaginationVO {
     private int page;
     private int size;

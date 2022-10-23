@@ -1,10 +1,11 @@
 package com.example.vuetoyserver.member;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-
-@Getter
+@Data
 public class MemberVO {
     private long member_sq;
     private String id;

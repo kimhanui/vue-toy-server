@@ -1,10 +1,10 @@
 package com.example.vuetoyserver.comment;
 
+import lombok.Data;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
-
-@Getter
+@Data
 public class CommentVO {
     private long comment_sq;
     private String content;

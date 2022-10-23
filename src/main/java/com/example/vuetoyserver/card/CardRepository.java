@@ -7,5 +7,9 @@ import java.util.List;
 
 @Mapper
 public interface CardRepository {
-    List<CardVO> selectList(PaginationVO vo);
+    List<CardVO> selectCardList(PaginationVO vo);
+
+    CardVO selectCard(long card_sq);
+
+    int createCard(CardVO vo);
 }

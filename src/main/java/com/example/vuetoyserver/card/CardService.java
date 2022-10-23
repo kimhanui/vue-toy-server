@@ -12,14 +12,14 @@ public class CardService {
     @Autowired
     private CardRepository repository;
     public List<CardVO> getList(PaginationVO vo) {
-        return repository.selectList(vo);
+        return repository.selectCardList(vo);
     }
 
     public CardVO get(long card_sq) {
-        return null;
+        return repository.selectCard(card_sq);
     }
 
-    public void create(CardVO vo) {
-
+    public int create(CardVO vo) {
+        return repository.createCard(vo);
     }
 }

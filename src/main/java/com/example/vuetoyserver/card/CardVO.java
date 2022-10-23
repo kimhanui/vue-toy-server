@@ -1,10 +1,11 @@
 package com.example.vuetoyserver.card;
 
+import lombok.Data;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDateTime;
-
-@Getter
+@Data
 public class CardVO {
     private long card_sq;
     private String title;
