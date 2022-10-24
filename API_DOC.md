@@ -142,7 +142,7 @@ param: **(body)**
 
 ### 프로필 사진 수정
 ```
-- PUT
+- POST
 - /member/v1.0/profile/img
 ```
 param: **(multipart/form-data)**
