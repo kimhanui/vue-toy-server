@@ -19,8 +19,8 @@ public class MemberController {
     }
 
     @PutMapping("/profile")
-    public void updateProfile(@RequestBody MemberVO vo){
-        memberService.updateProfile(vo);
+    public void updateMember(MemberVO vo){
+        memberService.updateMember(vo);
     }
 
     @PutMapping("/password")
@@ -28,7 +28,7 @@ public class MemberController {
         memberService.updatePassword(dto);
     }
 
-    @PutMapping("/profile/img")
+    @PostMapping("/profile/img")
     public void updateProfileImg(MemberDTO dto){
         memberService.updateProfileImg(dto);
     }

@@ -1,8 +1,6 @@
 package com.example.vuetoyserver.member;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 @Data
@@ -13,5 +11,6 @@ public class MemberVO {
     private String nickname;
     private String address;
     private String genre; // String list format
+    private String profile_img_url;
     private LocalDateTime reg_dt;
 }

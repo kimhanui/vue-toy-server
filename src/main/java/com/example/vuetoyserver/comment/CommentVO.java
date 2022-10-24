@@ -1,7 +1,6 @@
 package com.example.vuetoyserver.comment;
 
 import lombok.Data;
-import lombok.Getter;
 
 import java.time.LocalDateTime;
 @Data

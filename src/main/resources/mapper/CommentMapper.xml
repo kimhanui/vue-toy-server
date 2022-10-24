@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Mapper를 사용하는 Repository의 전체 경로를 적어줘야함. -->
+<mapper namespace="com.example.vuetoyserver.comment.CommentRepository">
+    <select id="selectCommentList" parameterType="com.example.vuetoyserver.common.PaginationVO"
+        resultType="com.example.vuetoyserver.comment.CommentVO">
+        SELECT
+            COMMENT_SQ, CONTENT, LIKE_CNT, CARD_SQ, MEMBER_SQ, REG_DT
+        FROM tb_comment
+        WHERE COMMENT_SQ=#{comment_sq};
+    </select>
+    <insert id="createComment" parameterType="com.example.vuetoyserver.comment.CommentVO">
+        INSERT INTO tb_comment
+            (content, like_cnt, card_sq, member_sq, reg_dt) VALUE
+            (
+             #{content},
+             #{card_sq},
+             #{member_sq},
+             CURRENT_TIMESTAMP
+            );
+    </insert>
+    <update id="updateCommentLikes" parameterType="com.example.vuetoyserver.member.MemberLikesDTO">
+        INSERT INTO tb_likes
+        (MEMBER_SQ, CARD_SQ, COMMENT_SQ, LIKES, UPD_DT)
+        VALUE
+        (
+        #{memberVO.member_sq},
+         <choose>
+             <when test="cardVO==null">
+                 0,
+             </when>
+            <otherwise>
+                #{cardVO.card_sq},
+            </otherwise>
+         </choose>
+        <choose>
+            <when test="commentVO==null">
+                0,
+            </when>
+            <otherwise>
+                #{commentVO.comment_sq},
+            </otherwise>
+        </choose>
+        #{likes},
+        CURRENT_TIMESTAMP
+        )
+        ON DUPLICATE KEY UPDATE
+        LIKES=#{likes},
+        UPD_DT=CURRENT_TIMESTAMP;
+    </update>
+</mapper>

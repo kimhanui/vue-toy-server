@@ -10,4 +10,60 @@
         SELECT * FROM tb_card
         LIMIT ${page * size}, ${size}
     </select>
+
+    <select id="selectCard" parameterType="long"
+            resultType="com.example.vuetoyserver.card.CardVO">
+        SELECT * FROM tb_card
+        WHERE CARD_SQ=#{card_sq}
+    </select>
+
+    <insert id="createCard" parameterType="com.example.vuetoyserver.card.CardVO">
+        INSERT INTO tb_card
+        (
+         TITLE,
+         CONTENT,
+         IMG_URL,
+         LIKE_CNT,
+         MEMBER_SQ,
+         REG_DT)
+            VALUE
+        (
+         #{title},
+        #{content},
+        #{img_url},
+        #{like_cnt},
+        #{member_sq},
+        CURRENT_TIMESTAMP
+        )
+    </insert>
+
+    <update id="updateCardLikes" parameterType="com.example.vuetoyserver.member.MemberLikesDTO">
+        INSERT INTO tb_likes
+        (MEMBER_SQ, CARD_SQ, COMMENT_SQ, LIKES, UPD_DT)
+        VALUE
+        (
+        #{memberVO.member_sq},
+        <choose>
+            <when test="cardVO==null">
+                0,
+            </when>
+            <otherwise>
+                #{cardVO.card_sq},
+            </otherwise>
+        </choose>
+        <choose>
+            <when test="commentVO==null">
+                0,
+            </when>
+            <otherwise>
+                #{commentVO.comment_sq},
+            </otherwise>
+        </choose>
+        #{likes},
+        CURRENT_TIMESTAMP
+        )
+        ON DUPLICATE KEY UPDATE
+        LIKES=#{likes},
+        UPD_DT=CURRENT_TIMESTAMP
+    </update>
 </mapper>

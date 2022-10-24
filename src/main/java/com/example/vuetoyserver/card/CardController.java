@@ -1,6 +1,7 @@
 package com.example.vuetoyserver.card;
 
 import com.example.vuetoyserver.common.PaginationVO;
+import com.example.vuetoyserver.member.MemberLikesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,5 +26,10 @@ public class CardController {
     @PostMapping
     public void create(@RequestBody CardVO vo){
         cardService.create(vo);
+    }
+
+    @PutMapping("/likes")
+    public void cardLikes(@RequestBody MemberLikesDTO dto){
+        cardService.updateCardLikes(dto);
     }
 }

@@ -43,7 +43,7 @@ param: **(body)**
 ### 카드 추천하기
 ```
 - PUT
-- /card/v1.0
+- /card/v1.0/likes
 ```
 param: **(body)**
 
@@ -51,7 +51,7 @@ param: **(body)**
 |-----------|-----------|--------------------|
 | member_sq | int       | 회원번호               |
 | card_sq   | int       | 카드번호               |
-| like_yn   | int       | 추천여부(0:비추천, 1: 추천) |
+| likes     | int       | 추천여부(0:비추천, 1: 추천) |
 
 
 ---
@@ -87,7 +87,7 @@ param: **(body)**
 ### 코멘트 추천하기
 ```
 - PUT
-- /comment/v1.0
+- /comment/v1.0/likes
 ```
 param: **(body)**
 
@@ -95,7 +95,7 @@ param: **(body)**
 |-----------|------|---------------------|
 | member_sq | int  | 회원번호                |
 | card_sq   | int  | 카드번호                |
-| like_yn   | int  | 추천여부(0:비추천, 1: 추천)  |
+| likes     | int  | 추천여부(0:비추천, 1: 추천)  |
 
 
 ---

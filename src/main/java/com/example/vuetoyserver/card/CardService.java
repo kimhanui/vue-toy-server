@@ -1,6 +1,7 @@
 package com.example.vuetoyserver.card;
 
 import com.example.vuetoyserver.common.PaginationVO;
+import com.example.vuetoyserver.member.MemberLikesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,5 +22,9 @@ public class CardService {
 
     public int create(CardVO vo) {
         return repository.createCard(vo);
+    }
+
+    public void updateCardLikes(MemberLikesDTO dto) {
+        repository.updateCardLikes(dto);
     }
 }

@@ -1,6 +1,7 @@
 drop table IF EXISTS tb_member;
 drop table IF EXISTS tb_card;
 drop table IF EXISTS tb_comment;
+drop table IF EXISTS tb_likes;
 
 create table tb_member
 (
@@ -35,11 +36,13 @@ create table tb_comment
     reg_dt     DATETIME default CURRENT_TIMESTAMP not null comment '생성일'
 ) comment '코멘트 정보';
 
-create table tb_card_likes
+create table tb_likes
 (
-    member_sq bigint                             not null,
-    card_sq   bigint                             not null,
-    likes     tinyint  default 0                 not null,
-    reg_dt    DATETIME default CURRENT_TIMESTAMP not null comment '생성일'
-) comment '카드 좋아요 정보';
+    member_sq  bigint                             not null,
+    card_sq    bigint                             not null,
+    comment_sq bigint                             not null,
+    likes      tinyint  default 0                 not null,
+    upd_dt     DATETIME default CURRENT_TIMESTAMP not null comment '수정일',
+    primary key (member_sq, card_sq, comment_sq)
+) comment '카드 추천 정보';
 
