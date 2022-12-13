@@ -11,3 +11,5 @@ spring:
       mode: always #load data.sql
   jpa:
     defer-datasource-initialization: true #load schema.sql
+  profiles:
+    include: s3
