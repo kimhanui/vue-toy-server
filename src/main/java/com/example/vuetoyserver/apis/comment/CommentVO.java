@@ -1,4 +1,4 @@
-package com.example.vuetoyserver.comment;
+package com.example.vuetoyserver.apis.comment;
 
 import lombok.Data;
 

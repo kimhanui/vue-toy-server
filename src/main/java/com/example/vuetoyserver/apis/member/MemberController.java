@@ -1,4 +1,4 @@
-package com.example.vuetoyserver.member;
+package com.example.vuetoyserver.apis.member;
 
 import com.example.vuetoyserver.common.PaginationVO;
 import org.springframework.beans.factory.annotation.Autowired;

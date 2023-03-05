@@ -1,7 +1,7 @@
-package com.example.vuetoyserver.member;
+package com.example.vuetoyserver.apis.member;
 
-import com.example.vuetoyserver.card.CardVO;
-import com.example.vuetoyserver.comment.CommentVO;
+import com.example.vuetoyserver.apis.card.CardVO;
+import com.example.vuetoyserver.apis.comment.CommentVO;
 import lombok.Data;
 
 /* Card, Content 추천 */

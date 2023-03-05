@@ -1,7 +1,7 @@
-package com.example.vuetoyserver.comment;
+package com.example.vuetoyserver.apis.comment;
 
 import com.example.vuetoyserver.common.PaginationVO;
-import com.example.vuetoyserver.member.MemberLikesDTO;
+import com.example.vuetoyserver.apis.member.MemberLikesDTO;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;

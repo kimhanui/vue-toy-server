@@ -1,4 +1,4 @@
-package com.example.vuetoyserver.card;
+package com.example.vuetoyserver.apis.card;
 
 import lombok.Data;
 
@@ -12,4 +12,5 @@ public class CardVO {
     private int like_cnt;
     private long member_sq;
     private LocalDateTime reg_dt;
+    private LocalDateTime upd_dt;
 }

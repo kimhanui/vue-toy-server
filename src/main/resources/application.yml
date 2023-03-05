@@ -3,6 +3,7 @@ mybatis:
   mapper-locations: mapper/*.xml
 spring:
   datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/vue_toy
     username: root
     password: test
@@ -12,4 +13,6 @@ spring:
   jpa:
     defer-datasource-initialization: true #load schema.sql
   profiles:
-    include: s3
+    include:
+      - s3
+      - setting

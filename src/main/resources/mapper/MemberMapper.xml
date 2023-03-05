@@ -4,17 +4,24 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- Mapper를 사용하는 Repository의 전체 경로를 적어줘야함. -->
-<mapper namespace="com.example.vuetoyserver.member.MemberRepository">
-    <select id="selectMember" parameterType="long" resultType="com.example.vuetoyserver.member.MemberVO">
+<mapper namespace="com.example.vuetoyserver.apis.member.MemberRepository">
+    <select id="selectMember" parameterType="long" resultType="com.example.vuetoyserver.apis.member.MemberVO">
         SELECT * FROM tb_member
         WHERE MEMBER_SQ=#{member_sq}
     </select>
 
-    <select id="selectStatistics" parameterType="Map" resultType="com.example.vuetoyserver.member.MemberDTO">
+    <select id="selectMemberBySearch" parameterType="com.example.vuetoyserver.apis.member.MemberDTO" resultType="com.example.vuetoyserver.apis.member.MemberVO">
+        SELECT * FROM tb_member
+        WHERE 1=1
+            AND NICKNAME LIKE CONCAT('%', #{nickname}, '%')
+        LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="selectStatistics" parameterType="Map" resultType="com.example.vuetoyserver.apis.member.MemberDTO">
          /* TODO */
     </select>
 
-    <update id="updateMember" parameterType="com.example.vuetoyserver.member.MemberVO">
+    <update id="updateMember" parameterType="com.example.vuetoyserver.apis.member.MemberVO">
         UPDATE tb_member
         SET
             NICKNAME=#{nickname},
@@ -24,7 +31,7 @@
             MEMBER_SQ=#{member_sq}
     </update>
 
-    <update id="updatePassword" parameterType="com.example.vuetoyserver.member.MemberDTO">
+    <update id="updatePassword" parameterType="com.example.vuetoyserver.apis.member.MemberDTO">
         UPDATE tb_member
         SET
             PASSWORD=#{newPw}
@@ -32,7 +39,7 @@
             MEMBER_SQ=#{member_sq}
     </update>
 
-    <update id="updateProfileImg" parameterType="com.example.vuetoyserver.member.MemberDTO">
+    <update id="updateProfileImg" parameterType="com.example.vuetoyserver.apis.member.MemberDTO">
         UPDATE tb_member
         SET
             PROFILE_IMG_URL=#{profile_img_url}

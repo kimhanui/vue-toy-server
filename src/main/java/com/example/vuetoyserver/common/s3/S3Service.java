@@ -17,23 +17,21 @@ public class S3Service extends S3Uploader {
         super(amazonS3);
     }
 
-    public String uploadProfileImg(MultipartFile multipartFile){
+    public String upload(String bucketDir, MultipartFile multipartFile){
         try{
-            setBucketDir("profile");
+            setBucketDir(bucketDir);
             return upload(multipartFile);
         } catch(IOException e){
-            log.debug("====Upload Profile Failed::"+e.getMessage());
+            log.debug("====Upload {} Failed::{}", bucketDir, e.getMessage());
         }
         return null;
     }
 
+    public String uploadProfileImg(MultipartFile multipartFile){
+        return upload("profile", multipartFile);
+    }
+
     public String uploadCardImg(MultipartFile multipartFile){
-        try{
-            setBucketDir("card");
-            return upload(multipartFile);
-        } catch(IOException e){
-            log.debug("====Upload Card Failed::"+e.getMessage());
-        }
-        return null;
+        return upload("card", multipartFile);
     }
 }

@@ -4,20 +4,28 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!-- Mapper를 사용하는 Repository의 전체 경로를 적어줘야함. -->
-<mapper namespace="com.example.vuetoyserver.card.CardRepository">
+<mapper namespace="com.example.vuetoyserver.apis.card.CardRepository">
     <select id="selectCardList" parameterType="com.example.vuetoyserver.common.PaginationVO"
-        resultType="com.example.vuetoyserver.card.CardVO">
+        resultType="com.example.vuetoyserver.apis.card.CardVO">
         SELECT * FROM tb_card
         LIMIT ${page * size}, ${size}
     </select>
 
     <select id="selectCard" parameterType="long"
-            resultType="com.example.vuetoyserver.card.CardVO">
+            resultType="com.example.vuetoyserver.apis.card.CardVO">
         SELECT * FROM tb_card
         WHERE CARD_SQ=#{card_sq}
     </select>
 
-    <insert id="createCard" parameterType="com.example.vuetoyserver.card.CardVO">
+    <select id="selectCardBySearch" parameterType="com.example.vuetoyserver.apis.card.CardDTO"
+            resultType="com.example.vuetoyserver.apis.card.CardVO">
+        SELECT * FROM tb_card
+        WHERE 1=1
+            AND TITLE LIKE CONCAT('%', #{title}, '%')
+        LIMIT #{offset}, #{size}
+    </select>
+
+    <insert id="createCard" parameterType="com.example.vuetoyserver.apis.card.CardVO">
         INSERT INTO tb_card
         (
          TITLE,
@@ -37,7 +45,17 @@
         )
     </insert>
 
-    <update id="updateCardLikes" parameterType="com.example.vuetoyserver.member.MemberLikesDTO">
+    <update id="updateCard" parameterType="com.example.vuetoyserver.apis.card.CardVO">
+        UPDATE tb_card
+        SET TITLE =#{title},
+            CONTENT=#{content},
+            IMG_URL=#{img_url},
+            LIKE_CNT=#{like_cnt},
+            MEMBER_SQ=#{member_sq},
+            UPD_DT=CURRENT_TIMESTAMP
+    </update>
+
+    <update id="updateCardLikes" parameterType="com.example.vuetoyserver.apis.member.MemberLikesDTO">
         INSERT INTO tb_likes
         (MEMBER_SQ, CARD_SQ, COMMENT_SQ, LIKES, UPD_DT)
         VALUE

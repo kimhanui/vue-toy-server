@@ -37,7 +37,8 @@ create table tb_card
     like_cnt  int      default 0                 not null comment '추천 수',
     member_sq bigint                             not null comment '작성자 pk',
     book_sq   bigint                             null comment '책 pk',
-    reg_dt    DATETIME default CURRENT_TIMESTAMP not null comment '생성일'
+    reg_dt    DATETIME default CURRENT_TIMESTAMP not null comment '생성일',
+    upd_dt    DATETIME default                   null comment '수정일'
 ) comment '카드 정보';
 
 create table tb_comment

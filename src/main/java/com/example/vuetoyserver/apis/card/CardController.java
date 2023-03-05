@@ -1,20 +1,18 @@
-package com.example.vuetoyserver.card;
+package com.example.vuetoyserver.apis.card;
 
 import com.example.vuetoyserver.common.PaginationVO;
-import com.example.vuetoyserver.member.MemberLikesDTO;
+import com.example.vuetoyserver.common.ScrollVO;
+import com.example.vuetoyserver.apis.member.MemberLikesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/card/v1.0")
 public class CardController {
     @Autowired
     private CardService cardService;
-
     @GetMapping
-    public List<CardVO> getList(PaginationVO vo){
+    public ScrollVO<CardVO> getList(PaginationVO vo){
         return cardService.getList(vo);
     }
 
@@ -24,8 +22,13 @@ public class CardController {
     }
 
     @PostMapping
-    public void create(@RequestBody CardVO vo){
-        cardService.create(vo);
+    public int create(CardDTO dto){
+        return cardService.create(dto);
+    }
+
+    @PutMapping
+    public int update(CardDTO dto){
+        return cardService.update(dto);
     }
 
     @PutMapping("/likes")

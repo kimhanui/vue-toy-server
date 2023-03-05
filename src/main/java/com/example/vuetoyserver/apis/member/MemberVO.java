@@ -1,4 +1,4 @@
-package com.example.vuetoyserver.member;
+package com.example.vuetoyserver.apis.member;
 
 import lombok.Data;
 

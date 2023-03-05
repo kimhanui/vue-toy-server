@@ -1,7 +1,7 @@
-package com.example.vuetoyserver.comment;
+package com.example.vuetoyserver.apis.comment;
 
 import com.example.vuetoyserver.common.PaginationVO;
-import com.example.vuetoyserver.member.MemberLikesDTO;
+import com.example.vuetoyserver.apis.member.MemberLikesDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
