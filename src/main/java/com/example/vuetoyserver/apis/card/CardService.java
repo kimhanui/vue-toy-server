@@ -1,9 +1,8 @@
 package com.example.vuetoyserver.apis.card;
 
-import com.example.vuetoyserver.common.PaginationVO;
-import com.example.vuetoyserver.common.ScrollVO;
-import com.example.vuetoyserver.common.s3.S3Service;
 import com.example.vuetoyserver.apis.member.MemberLikesDTO;
+import com.example.vuetoyserver.common.PaginationVO;
+import com.example.vuetoyserver.common.s3.S3Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -21,9 +20,11 @@ public class CardService {
     @Autowired
     private S3Service s3Service;
 
-    public ScrollVO<CardVO> getList(PaginationVO vo) {
-        List<CardVO> list = repository.selectCardList(vo);
-        return new ScrollVO<>(list, vo.getSize());
+    public PaginationVO<CardVO> getList(CardDTO req){
+        req.setOffset(req.getPage() * req.getSize());
+        List<CardVO> cards = repository.selectCardBySearch(req);
+        int totalCount = repository.selectCardCountBySearch(req);
+        return new PaginationVO<>(cards, req.getPage(), req.getSize(), totalCount);
     }
 
     public CardVO get(long card_sq) {
@@ -47,7 +48,7 @@ public class CardService {
         List<MultipartFile> files = dto.getFiles();
         if(files != null && !files.isEmpty()) {
             if(!isStringEmpty(dto.getImg_url())) {
-                /* TODO: s3 deletion */
+                s3Service.delete(dto.getImg_url());
             }
             String fileName = s3Service.uploadCardImg(files.get(0));
             dto.setImg_url(fileName);

@@ -2,7 +2,6 @@ package com.example.vuetoyserver.apis.member;
 
 import com.example.vuetoyserver.common.PaginationVO;
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -10,6 +9,7 @@ import java.util.List;
 public interface MemberRepository {
     MemberVO selectMember(long member_sq);
     List<MemberVO> selectMemberBySearch(MemberDTO dto);
+    int selectMemberCountBySearch(MemberDTO dto);
     void updateMember(MemberVO vo);
 
     void updatePassword(MemberDTO vo);

@@ -1,8 +1,7 @@
 package com.example.vuetoyserver.apis.card;
 
-import com.example.vuetoyserver.common.PaginationVO;
-import com.example.vuetoyserver.common.ScrollVO;
 import com.example.vuetoyserver.apis.member.MemberLikesDTO;
+import com.example.vuetoyserver.common.PaginationVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,8 +11,8 @@ public class CardController {
     @Autowired
     private CardService cardService;
     @GetMapping
-    public ScrollVO<CardVO> getList(PaginationVO vo){
-        return cardService.getList(vo);
+    public PaginationVO<CardVO> getList(CardDTO req){
+        return cardService.getList(req);
     }
 
     @GetMapping("/{card_sq}")

@@ -12,6 +12,12 @@ public class MemberService {
     @Autowired
     private MemberRepository repository;
 
+    public PaginationVO<MemberVO> getList(MemberDTO req){
+        req.setOffset(req.getPage() * req.getSize());
+        List<MemberVO> members = repository.selectMemberBySearch(req);
+        int totalCount = repository.selectMemberCountBySearch(req);
+        return new PaginationVO<>(members, req.getPage(), req.getSize(), totalCount);
+    }
     public MemberVO get(long member_sq) {
         return repository.selectMember(member_sq);
     }

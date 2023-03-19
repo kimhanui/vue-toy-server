@@ -34,4 +34,8 @@ public class S3Service extends S3Uploader {
     public String uploadCardImg(MultipartFile multipartFile){
         return upload("card", multipartFile);
     }
+
+    public void delete(String key){
+        delete(key);
+    }
 }

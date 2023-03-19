@@ -8,7 +8,7 @@
     <select id="selectCardList" parameterType="com.example.vuetoyserver.common.PaginationVO"
         resultType="com.example.vuetoyserver.apis.card.CardVO">
         SELECT * FROM tb_card
-        LIMIT ${page * size}, ${size}
+        LIMIT #{page * size}, #{size}
     </select>
 
     <select id="selectCard" parameterType="long"
@@ -21,8 +21,19 @@
             resultType="com.example.vuetoyserver.apis.card.CardVO">
         SELECT * FROM tb_card
         WHERE 1=1
+          <if test="title!=null and title!=''">
             AND TITLE LIKE CONCAT('%', #{title}, '%')
+          </if>
         LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="selectCardCountBySearch" parameterType="com.example.vuetoyserver.apis.card.CardDTO"
+            resultType="int">
+        SELECT COUNT(*) FROM tb_card
+        WHERE 1=1
+        <if test="title!=null and title!=''">
+            AND TITLE LIKE CONCAT('%', #{title}, '%')
+        </if>
     </select>
 
     <insert id="createCard" parameterType="com.example.vuetoyserver.apis.card.CardVO">

@@ -13,6 +13,10 @@ public class MemberController {
     @Autowired
     private MemberService memberService;
 
+    @GetMapping
+    public PaginationVO<MemberVO>getList(MemberDTO req){
+        return memberService.getList(req);
+    }
     @GetMapping("/{member_sq}")
     public MemberVO get(@PathVariable long member_sq){
         return memberService.get(member_sq);

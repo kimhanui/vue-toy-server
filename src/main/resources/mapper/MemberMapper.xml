@@ -13,8 +13,18 @@
     <select id="selectMemberBySearch" parameterType="com.example.vuetoyserver.apis.member.MemberDTO" resultType="com.example.vuetoyserver.apis.member.MemberVO">
         SELECT * FROM tb_member
         WHERE 1=1
+          <if test="nickname !=null and nickname !=''">
             AND NICKNAME LIKE CONCAT('%', #{nickname}, '%')
+          </if>
         LIMIT #{offset}, #{size}
+    </select>
+
+    <select id="selectMemberCountBySearch" parameterType="com.example.vuetoyserver.apis.member.MemberDTO" resultType="int">
+        SELECT COUNT(*) FROM tb_member
+        WHERE 1=1
+        <if test="nickname !=null and nickname !=''">
+            AND NICKNAME LIKE CONCAT('%', #{nickname}, '%')
+        </if>
     </select>
 
     <select id="selectStatistics" parameterType="Map" resultType="com.example.vuetoyserver.apis.member.MemberDTO">
